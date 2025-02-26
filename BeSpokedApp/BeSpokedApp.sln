@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1500
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeSpokedApp", "BeSpokedApp\BeSpokedApp.csproj", "{5385933B-1329-41FC-8108-B243AF9DE45F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeSpokedDAL", "..\DAL\BeSpokedDAL\BeSpokedDAL.csproj", "{6E04F7CA-4F92-4B26-B26B-206D16E29E47}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5385933B-1329-41FC-8108-B243AF9DE45F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5385933B-1329-41FC-8108-B243AF9DE45F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5385933B-1329-41FC-8108-B243AF9DE45F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5385933B-1329-41FC-8108-B243AF9DE45F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E04F7CA-4F92-4B26-B26B-206D16E29E47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E04F7CA-4F92-4B26-B26B-206D16E29E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E04F7CA-4F92-4B26-B26B-206D16E29E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E04F7CA-4F92-4B26-B26B-206D16E29E47}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B6467BD6-DDAC-4745-B62D-7DBD785BC34E}
+	EndGlobalSection
+EndGlobal
