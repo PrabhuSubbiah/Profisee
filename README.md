@@ -6,3 +6,4 @@ Project builds and works. You can see all the screen shots in the document.
 As Jquery script bundle is messed up, the form validation has some issues.
 Error handling and logging are not added.
 Report is only show system current date quarter.
+Solution file is under BeSpokedApp folder.
