@@ -1,0 +1,12 @@
+C:\Work\BeSpoked\BeSpokedApp\DAL\BeSpokedDAL\bin\Debug\BeSpokedDAL.dll.config
+C:\Work\BeSpoked\BeSpokedApp\DAL\BeSpokedDAL\bin\Debug\BeSpokedDAL.dll
+C:\Work\BeSpoked\BeSpokedApp\DAL\BeSpokedDAL\bin\Debug\BeSpokedDAL.pdb
+C:\Work\BeSpoked\BeSpokedApp\DAL\BeSpokedDAL\bin\Debug\EntityFramework.dll
+C:\Work\BeSpoked\BeSpokedApp\DAL\BeSpokedDAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Work\BeSpoked\BeSpokedApp\DAL\BeSpokedDAL\bin\Debug\EntityFramework.xml
+C:\Work\BeSpoked\BeSpokedApp\DAL\BeSpokedDAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Work\BeSpoked\BeSpokedApp\DAL\BeSpokedDAL\obj\Debug\BeSpokedDAL.csprojAssemblyReference.cache
+C:\Work\BeSpoked\BeSpokedApp\DAL\BeSpokedDAL\obj\Debug\BeSpokedDAL.csproj.CoreCompileInputs.cache
+C:\Work\BeSpoked\BeSpokedApp\DAL\BeSpokedDAL\obj\Debug\BeSpokedDAL.csproj.CopyComplete
+C:\Work\BeSpoked\BeSpokedApp\DAL\BeSpokedDAL\obj\Debug\BeSpokedDAL.dll
+C:\Work\BeSpoked\BeSpokedApp\DAL\BeSpokedDAL\obj\Debug\BeSpokedDAL.pdb

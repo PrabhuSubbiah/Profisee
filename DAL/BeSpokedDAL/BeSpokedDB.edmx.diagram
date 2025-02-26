@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3a32acd1035e4f4884e73be878bf5430" Name="Diagram1">
+        <EntityTypeShape EntityType="BeSpokedDB.customer" Width="1.5" PointX="8.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSpokedDB.discount" Width="1.5" PointX="1.375" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSpokedDB.manager" Width="1.5" PointX="4.125" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSpokedDB.product" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSpokedDB.sale" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSpokedDB.sales_person" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeSpokedDB.style" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="BeSpokedDB.FK_sales_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSpokedDB.FK_discount_product" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSpokedDB.FK_salesPerson_manager" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSpokedDB.FK_product_style" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSpokedDB.FK_sales_product" ManuallyRouted="false" />
+        <AssociationConnector Association="BeSpokedDB.FK_sales_salesPerson" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

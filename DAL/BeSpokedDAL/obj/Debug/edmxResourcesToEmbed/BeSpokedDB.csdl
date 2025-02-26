@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BeSpokedDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="sales" Relationship="Self.FK_sales_customer" FromRole="customer" ToRole="sales" />
+  </EntityType>
+  <EntityType Name="discount">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="begin_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="end_date" Type="DateTime" Precision="3" />
+    <Property Name="discount1" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <NavigationProperty Name="product" Relationship="Self.FK_discount_product" FromRole="discount" ToRole="product" />
+  </EntityType>
+  <EntityType Name="manager">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="sales_person" Relationship="Self.FK_salesPerson_manager" FromRole="manager" ToRole="sales_person" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="style_id" Type="Int32" Nullable="false" />
+    <Property Name="purchase_price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="sales_price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="commission" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <NavigationProperty Name="discounts" Relationship="Self.FK_discount_product" FromRole="product" ToRole="discount" />
+    <NavigationProperty Name="style" Relationship="Self.FK_product_style" FromRole="product" ToRole="style" />
+    <NavigationProperty Name="sales" Relationship="Self.FK_sales_product" FromRole="product" ToRole="sales" />
+  </EntityType>
+  <EntityType Name="sale">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="sales_person_id" Type="Int32" Nullable="false" />
+    <Property Name="customer_id" Type="Int32" Nullable="false" />
+    <Property Name="sales_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="customer" Relationship="Self.FK_sales_customer" FromRole="sales" ToRole="customer" />
+    <NavigationProperty Name="product" Relationship="Self.FK_sales_product" FromRole="sales" ToRole="product" />
+    <NavigationProperty Name="sales_person" Relationship="Self.FK_sales_salesPerson" FromRole="sales" ToRole="sales_person" />
+  </EntityType>
+  <EntityType Name="sales_person">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="termination_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="manager_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="manager" Relationship="Self.FK_salesPerson_manager" FromRole="sales_person" ToRole="manager" />
+    <NavigationProperty Name="sales" Relationship="Self.FK_sales_salesPerson" FromRole="sales_person" ToRole="sales" />
+  </EntityType>
+  <EntityType Name="style">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="style1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="products" Relationship="Self.FK_product_style" FromRole="style" ToRole="product" />
+  </EntityType>
+  <Association Name="FK_sales_customer">
+    <End Role="customer" Type="Self.customer" Multiplicity="1" />
+    <End Role="sales" Type="Self.sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sales">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_discount_product">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="discount" Type="Self.discount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="discount">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_salesPerson_manager">
+    <End Role="manager" Type="Self.manager" Multiplicity="1" />
+    <End Role="sales_person" Type="Self.sales_person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="manager">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sales_person">
+        <PropertyRef Name="manager_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_product_style">
+    <End Role="style" Type="Self.style" Multiplicity="1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="style">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="style_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sales_product">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="sales" Type="Self.sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sales">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sales_salesPerson">
+    <End Role="sales_person" Type="Self.sales_person" Multiplicity="1" />
+    <End Role="sales" Type="Self.sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sales_person">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sales">
+        <PropertyRef Name="sales_person_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BeSpokedConStr" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="discounts" EntityType="Self.discount" />
+    <EntitySet Name="managers" EntityType="Self.manager" />
+    <EntitySet Name="products" EntityType="Self.product" />
+    <EntitySet Name="sales" EntityType="Self.sale" />
+    <EntitySet Name="sales_person" EntityType="Self.sales_person" />
+    <EntitySet Name="styles" EntityType="Self.style" />
+    <AssociationSet Name="FK_sales_customer" Association="Self.FK_sales_customer">
+      <End Role="customer" EntitySet="customers" />
+      <End Role="sales" EntitySet="sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_discount_product" Association="Self.FK_discount_product">
+      <End Role="product" EntitySet="products" />
+      <End Role="discount" EntitySet="discounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_salesPerson_manager" Association="Self.FK_salesPerson_manager">
+      <End Role="manager" EntitySet="managers" />
+      <End Role="sales_person" EntitySet="sales_person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_product_style" Association="Self.FK_product_style">
+      <End Role="style" EntitySet="styles" />
+      <End Role="product" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sales_product" Association="Self.FK_sales_product">
+      <End Role="product" EntitySet="products" />
+      <End Role="sales" EntitySet="sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sales_salesPerson" Association="Self.FK_sales_salesPerson">
+      <End Role="sales_person" EntitySet="sales_person" />
+      <End Role="sales" EntitySet="sales" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
