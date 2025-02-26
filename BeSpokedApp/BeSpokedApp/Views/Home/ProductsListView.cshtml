@@ -1,0 +1,85 @@
+﻿@using BeSpokedDAL.DTO;
+@model List<Product>
+
+<script>
+    function OpenProductModel(productId) {
+        $.ajax({
+            url: "/Home/UpdateProduct/" + productId ,
+            success: function (result) {
+
+                $("#UpdateProduct").html(result);
+
+                $("#UpdateProduct").dialog({
+
+                    modal: true,
+                    width: 600,
+                });
+            }
+        });
+    }
+</script>
+<div id="UpdateProduct" title="UpdateProduct" style="display:none;width:700px;" >
+
+</div>
+<h2>Product List</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                <span>Manufacturer</span>
+            </th>
+            <th>
+                <span>Style</span>
+            </th>
+            <th>
+                <span>Purchanse Price</span>
+            </th>
+            <th>
+                <span>Sales Price</span>
+            </th>
+            <th>
+                <span>Commission</span>
+            </th>
+            <th>
+                <span>Quantity</span>
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="7">No rows match search criteria</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.style_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.purchase_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sales_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.commission)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    <button id="UpdateProductButton" onclick="return OpenProductModel(@item.id)">Update</button>
+                </td>
+            </tr>
+        }
+    }
+</table>

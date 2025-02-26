@@ -1,0 +1,89 @@
+﻿@using BeSpokedDAL.DTO;
+@model List<SalesPerson>
+<script>
+    function OpenSalesPersonModel(salesPersonId) {
+        $.ajax({
+            url: "/Home/UpdateSalesPerson/" + salesPersonId ,
+            success: function (result) {
+                $("#UpdateSalesPerson").html(result);
+
+                $("#UpdateSalesPerson").dialog({
+                    modal: true,
+                    width: 600,
+                });
+            }
+        });
+    }
+</script>
+<div id="UpdateSalesPerson" title="UpdateSalesPerson" style="display:none;">
+
+</div>
+
+<h2>Sales Person List</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                <span>First Name</span>
+            </th>
+            <th>
+                <span>Last Name</span>
+            </th>
+            <th>
+                <span>Address</span>
+            </th>
+            <th>
+                <span>Phone</span>
+            </th>
+            <th>
+                <span>Start Date</span>
+            </th>
+            <th>
+                <span>Termination Date</span>
+            </th>
+            <th>
+                <span>Manager</span>
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="8">No rows match search criteria</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.first_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.last_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.start_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.termination_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.manager_name)
+                </td>
+                <td>
+                    <button id="UpdateSalesPersonButton" onclick="OpenSalesPersonModel(@item.id)">Update</button>
+                </td>
+            </tr>
+        }
+    }
+</table>

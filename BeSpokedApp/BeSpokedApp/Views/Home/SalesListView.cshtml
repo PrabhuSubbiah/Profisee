@@ -1,0 +1,96 @@
+﻿@using BeSpokedDAL.DTO;
+@model List<Sales>
+
+<script>
+    function OpenSalesModel() {
+        $.ajax({
+            url: "/Home/AddNewSales",
+            success: function (result) {
+                $("#AddSales").html(result);
+                $("#AddSales").dialog({
+                    modal: true,
+                    width: 600,
+                });
+            }
+        });
+    }
+</script>
+<div id="AddSales" title="Add Sales" style="display:none;">
+
+</div>
+<h2>Sales List</h2>
+@using (Html.BeginForm("SalesSearch", "Home", FormMethod.Get))
+{
+    <div style="width:100%;">
+        <div class="row">
+            <div class="col-lg-2">
+                <input type="date" id="fromDate" name="fromDate" style="width:200px" />
+            </div>
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-2">
+                <input type="date" id="toDate" name="toDate" style="width:200px" />
+            </div>
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-2">
+                <input type="submit" value="Search" />
+            </div>
+        </div>
+    </div>
+}
+<div style="width:100%;text-align:right;">
+    <button id="AddSalesButton" onclick="OpenSalesModel()">Create</button>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                <span>Customer Name</span>
+            </th>
+            <th>
+                <span>Sales Date</span>
+            </th>
+            <th>
+                <span>Price</span>
+            </th>
+            <th>
+                <span>Sales Person Name</span>
+            </th>
+            <th>
+                <span>Commission</span>
+            </th>
+        </tr>
+    </thead>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="5">No rows match search criteria</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customer_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sales_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sales_person_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.commision_earned)
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+

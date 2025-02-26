@@ -1,0 +1,43 @@
+﻿@using BeSpokedDAL.DTO;
+@model List<SalesReport>
+<h2>Quarterly Sales Report</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                <span>Sales Person Name</span>
+            </th>
+            <th>
+                <span>Total Sales</span>
+            </th>
+            <th>
+                <span>Total Commission Earned</span>
+            </th>
+        </tr>
+    </thead>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="3">No rows match search criteria</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesPersonName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SaleAmountQuarter)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesCommission)
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+
